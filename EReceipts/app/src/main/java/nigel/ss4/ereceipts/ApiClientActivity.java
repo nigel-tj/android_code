@@ -69,7 +69,7 @@ public class ApiClientActivity extends Activity implements OnClickListener {
         protected String doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
             HttpContext localContext = new BasicHttpContext();
-            HttpGet httpGet = new HttpGet("http://api.lve.dev:3000/users/1");
+            HttpGet httpGet = new HttpGet("http://api.ereceipts.co.za/users/1");
             String text = null;
             try {
                 HttpResponse response = httpClient.execute(httpGet, localContext);
