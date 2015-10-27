@@ -65,7 +65,8 @@ public class SignUp extends ActionBarActivity {
         String email = emailTextField.getText().toString();
         EditText passwordTextField = (EditText) findViewById(R.id.password);
         String password = passwordTextField.getText().toString();
-        
+        ApiClientActivity api = new ApiClientActivity();
+        api.execute("/users/1");
         Toast.makeText(getApplicationContext(), email,
                 Toast.LENGTH_SHORT).show();
 

@@ -21,9 +21,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class ApiClientActivity extends Activity implements OnClickListener {
+
+    private static String host = "http://api.ereceipts.co.za/";
+    String endPoint = "";
+
     @Override
-
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_api_client);
@@ -34,14 +36,15 @@ public class ApiClientActivity extends Activity implements OnClickListener {
 
 
     @Override
-
-
     public void onClick(View arg0) {
         Button b = (Button)findViewById(R.id.my_button);
-
-
         b.setClickable(false);
+    }
+
+    public String execute(String endPoint){
+        this.endPoint = endPoint;
         new LongRunningGetIO().execute();
+        return "";
     }
 
     private class LongRunningGetIO extends AsyncTask <Void, Void, String> {
@@ -62,14 +65,12 @@ public class ApiClientActivity extends Activity implements OnClickListener {
             return out.toString();
         }
 
-
         @Override
-
-
         protected String doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
             HttpContext localContext = new BasicHttpContext();
-            HttpGet httpGet = new HttpGet("http://api.ereceipts.co.za/users/1");
+            String apiEndPoint = host+endPoint;
+            HttpGet httpGet = new HttpGet(apiEndPoint);
             String text = null;
             try {
                 HttpResponse response = httpClient.execute(httpGet, localContext);
@@ -88,15 +89,9 @@ public class ApiClientActivity extends Activity implements OnClickListener {
                 EditText et = (EditText)findViewById(R.id.my_edit);
                 et.setText(results);
             }
-
-
             Button b = (Button)findViewById(R.id.my_button);
-
-
             b.setClickable(true);
         }
-
-
     }
 
 }

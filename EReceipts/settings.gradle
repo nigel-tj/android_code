@@ -1,1 +1,1 @@
-include ':app', ':achartengine-1.0.0', ':achartengine-1.1.0'
+include ':app', ':achartengine-1.1.0'
